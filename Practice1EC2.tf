@@ -6,9 +6,10 @@ provider "aws"{
 
 resource "aws_instance" "firstExample"{
   ami = "ami-0fa49cc9dc8d62c84"
+  count = 5
   instance_type = "t2.micro"
   tags = {
-    Name = "First-server"
+    Name = "First-server ${count.index+1}"
     Environment = "dev"
   }
 }
