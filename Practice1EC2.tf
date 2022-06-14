@@ -12,3 +12,11 @@ resource "aws_instance" "firstExample"{
     Environment = "dev"
   }
 }
+
+terraform {
+  backend "s3"{
+    bucket = "backupforterraform"
+    key = "app/dev/terraform.tfstate"
+    region = "us-east-2"
+  }
+}
