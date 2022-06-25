@@ -8,7 +8,7 @@ resource "aws_instance" "instance_with_sg" {
   key_name        = "keyPair"
   security_groups = ["instance_sg"]
 #   public_ip = aws_eip.public_ip
-#   count           = 2
+  count           = 2
   tags = {
     Name = "Instance "/*${count.index+1}"*/
   }
@@ -39,8 +39,11 @@ resource "aws_security_group" "instance_sg" {
 }
 
 resource "aws_eip" "public_ip" {
-
-    instance = aws_instance.instance_with_sg.id
+  for_each = toset(var.ec2_name)
+    instance = aws_instance.instance_with_sg[each.key].id
+    depends_on = [
+      aws_instance.instance_with_sg
+    ]
     # dynamic "setting"{
     #     for_each = aws_instance.instance_with_sg
         
