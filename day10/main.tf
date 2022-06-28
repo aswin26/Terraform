@@ -13,7 +13,7 @@ module "aws_ec2" {
   instance_type = var.instance_type
   count = var.counts
   associate_public_ip = var.associate_public_ip
-  vpc_id = module.aws_vpc.vpc_id
+  sg_id = module.aws_vpc.sg_id
   subnet_id = module.aws_vpc.public_subnet
   depends_on = [
     module.aws_vpc

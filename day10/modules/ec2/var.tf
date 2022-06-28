@@ -7,7 +7,7 @@ variable "instance_type" {
 }
 
 variable "key_name" {
-  default="keyPair"
+  default="keyPairs"
 }
 
 variable "counts" {
@@ -22,6 +22,6 @@ variable "associate_public_ip" {
   
 }
 
-variable "vpc_id" {
+variable "sg_id" {
   
 }
